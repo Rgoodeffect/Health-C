@@ -7,7 +7,7 @@ Legend: ✅ done · 🚧 in progress · ⬜ queued
 | 0 | Platform foundation (app skeleton, roles, auth, design system, shell, i18n) | ✅ | ✅ | ⬜ |
 | 1 | Patient Registration | ✅ | ✅ | ⬜ |
 | 2 | Appointments | ✅ | ✅ | ⬜ |
-| 3 | Reception | ⬜ | ⬜ | ⬜ |
+| 3 | Reception | ✅ | ✅ | ⬜ |
 | 4 | Consultation & EMR | ⬜ | ⬜ | ⬜ |
 | 5 | Prescription Management | ⬜ | ⬜ | ⬜ |
 | 6 | Laboratory (LIS) | ⬜ | ⬜ | ⬜ |
@@ -61,6 +61,16 @@ Each row is committed to `claude/healthcare-management-system-xxor9g` as it comp
 - Frontend: day/week/month calendar with native HTML5 drag-and-drop rescheduling on the
   week grid, and month-view drill-down into a day.
 
-**Not yet built:** demo/seed data fixtures, and modules 3–14's own doctypes/screens (the
+**Module 3 — Reception**
+- `Reception Queue Token` doctype (date-scoped naming series `TKN-YYYY-MM-DD-###`).
+- `healthcare_erp/api/reception.py`: check-in, live queue, call-next (priority-ordered),
+  status updates, payment verification, and a PII-minimal waiting-room-display endpoint.
+- `healthcare_erp/tasks.py` added (scheduler jobs referenced by `hooks.py` since the
+  foundation commit had no implementation yet) — each job guards on the doctypes it needs
+  so it safely no-ops until that module is installed.
+- Frontend: reception desk screen (search-to-check-in, live queue table with actions) and a
+  separate kiosk-style `/reception-display` route (no app chrome) for a lobby TV.
+
+**Not yet built:** demo/seed data fixtures, and modules 4–14's own doctypes/screens (the
 Patient 360 tabs already render live data from core ERPNext doctypes as those modules land —
 no frontend rework needed later, just backend doctypes + richer detail screens).
