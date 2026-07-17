@@ -210,5 +210,84 @@
 		"options": "Patient Allergy",
 		"insert_after": "allergies_section",
 		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Lab Test",
+		"fieldname": "healthcare_erp_result_section",
+		"label": "Result Summary",
+		"fieldtype": "Section Break",
+		"insert_after": "patient",
+		"collapsible": 1,
+		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Lab Test",
+		"fieldname": "result_value",
+		"label": "Result Value",
+		"fieldtype": "Data",
+		"insert_after": "healthcare_erp_result_section",
+		"in_list_view": 1,
+		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Lab Test",
+		"fieldname": "normal_range",
+		"label": "Normal Range",
+		"fieldtype": "Data",
+		"insert_after": "result_value",
+		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Lab Test",
+		"fieldname": "healthcare_erp_result_column_break",
+		"fieldtype": "Column Break",
+		"insert_after": "normal_range",
+		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Lab Test",
+		"fieldname": "has_critical_result",
+		"label": "Critical Result",
+		"fieldtype": "Check",
+		"insert_after": "healthcare_erp_result_column_break",
+		"in_list_view": 1,
+		"in_standard_filter": 1,
+		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Lab Test",
+		"fieldname": "critical_result_notes",
+		"label": "Critical Result Notes",
+		"fieldtype": "Small Text",
+		"insert_after": "has_critical_result",
+		"depends_on": "has_critical_result",
+		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Lab Test",
+		"fieldname": "verified_by",
+		"label": "Verified By",
+		"fieldtype": "Link",
+		"options": "User",
+		"read_only": 1,
+		"insert_after": "critical_result_notes",
+		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Lab Test",
+		"fieldname": "verified_on",
+		"label": "Verified On",
+		"fieldtype": "Datetime",
+		"read_only": 1,
+		"insert_after": "verified_by",
+		"module": "Healthcare ERP"
 	}
 ]

@@ -100,6 +100,8 @@ ROLE_PERMISSION_MATRIX: dict[str, dict[str, dict]] = {
 		"Sample Collection": CRUD,
 		"Sample Barcode Label": CRUD,
 		"Lab QC Run": CRUD,
+		"Analyzer Result Inbox": CRUD,
+		"Lab Test Template": READ,
 	},
 	"Radiologist": {
 		"Radiology Order": CLINICAL,

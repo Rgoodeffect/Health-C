@@ -1,0 +1,26 @@
+{
+  "doctype": "DocType",
+  "name": "Analyzer Result Inbox",
+  "module": "Healthcare ERP",
+  "custom": 0,
+  "naming_rule": "Random",
+  "autoname": "hash",
+  "sort_field": "received_on",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "fields": [
+    { "fieldname": "sample_barcode", "label": "Sample Barcode", "fieldtype": "Data", "reqd": 1, "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "test_code", "label": "Test Code", "fieldtype": "Data", "reqd": 1, "in_list_view": 1 },
+    { "fieldname": "result_value", "label": "Result Value", "fieldtype": "Data", "reqd": 1, "in_list_view": 1 },
+    { "fieldname": "column_break_1", "fieldtype": "Column Break" },
+    { "fieldname": "raw_payload", "label": "Raw Payload", "fieldtype": "Code", "options": "JSON" },
+    { "fieldname": "received_on", "label": "Received On", "fieldtype": "Datetime", "default": "now", "read_only": 1, "in_list_view": 1 },
+    { "fieldname": "section_break_1", "fieldtype": "Section Break" },
+    { "fieldname": "status", "label": "Status", "fieldtype": "Select", "options": "Pending\nMatched\nError", "default": "Pending", "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "lab_test", "label": "Matched Lab Test", "fieldtype": "Link", "options": "Lab Test", "read_only": 1 },
+    { "fieldname": "error_message", "label": "Error Message", "fieldtype": "Small Text" }
+  ],
+  "permissions": [
+    { "role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1, "report": 1, "export": 1 }
+  ]
+}
