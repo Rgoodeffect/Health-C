@@ -57,6 +57,8 @@ ROLE_PERMISSION_MATRIX: dict[str, dict[str, dict]] = {
 		"Clinical Procedure": READ,
 		"Inpatient Record": READ,
 		"Executive KPI Snapshot": READ,
+		"Surgery Request": READ,
+		"OT Schedule": READ,
 	},
 	"Finance Director": {
 		"Sales Invoice": READ,
@@ -89,6 +91,13 @@ ROLE_PERMISSION_MATRIX: dict[str, dict[str, dict]] = {
 		"Radiology Order": READ_CREATE,
 		"Radiology Report": READ,
 		"Modality": READ,
+		"Surgery Request": READ_CREATE,
+		"OT Schedule": READ,
+		"Pre Op Checklist": READ_CREATE,
+		"Anesthesia Record": READ_CREATE,
+		"Surgery Note": READ_CREATE,
+		"Recovery Room Log": READ,
+		"Implant Tracking": READ_CREATE,
 	},
 	"Nurse": {
 		"Patient": READ,
@@ -97,6 +106,10 @@ ROLE_PERMISSION_MATRIX: dict[str, dict[str, dict]] = {
 		"Inpatient Record": READ_CREATE,
 		"Bed Transfer Request": READ_CREATE,
 		"Clinical Alert": {**READ, "write": 1},
+		"Surgery Request": READ,
+		"OT Schedule": READ,
+		"Pre Op Checklist": READ_CREATE,
+		"Recovery Room Log": READ_CREATE,
 	},
 	"Laboratory Technician": {
 		"Lab Test": {**CLINICAL, "delete": 0},
