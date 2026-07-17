@@ -144,10 +144,21 @@ def _appointments(patient):
 def _consultations(patient):
 	if not frappe.db.exists("DocType", "Patient Encounter"):
 		return []
+	# `chief_complaint`/`primary_diagnosis_code` are healthcare_erp Custom Fields
+	# (Module 4) — core Patient Encounter stores these as child tables (Symptom/
+	# Diagnosis), which frappe.get_all cannot select directly, so we don't rely
+	# on their exact core schema here.
+	fields = ["name", "encounter_date", "practitioner", "docstatus"]
+	meta = frappe.get_meta("Patient Encounter")
+	if meta.get_field("chief_complaint"):
+		fields.append("chief_complaint")
+	if meta.get_field("primary_diagnosis_code"):
+		fields.append("primary_diagnosis_code as diagnosis")
+
 	return frappe.get_all(
 		"Patient Encounter",
 		filters={"patient": patient},
-		fields=["name", "encounter_date", "practitioner", "symptoms", "diagnosis", "docstatus"],
+		fields=fields,
 		order_by="encounter_date desc",
 		limit_page_length=50,
 	)

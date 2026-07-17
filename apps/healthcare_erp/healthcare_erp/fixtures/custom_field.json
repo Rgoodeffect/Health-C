@@ -105,5 +105,90 @@
 		"fieldtype": "Check",
 		"insert_after": "coverage_plan",
 		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Patient Encounter",
+		"fieldname": "clinical_notes_section",
+		"label": "Consultation Notes",
+		"fieldtype": "Section Break",
+		"insert_after": "encounter_date",
+		"collapsible": 0,
+		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Patient Encounter",
+		"fieldname": "chief_complaint",
+		"label": "Chief Complaint",
+		"fieldtype": "Small Text",
+		"insert_after": "clinical_notes_section",
+		"in_list_view": 1,
+		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Patient Encounter",
+		"fieldname": "history_of_present_illness",
+		"label": "History of Present Illness",
+		"fieldtype": "Text",
+		"insert_after": "chief_complaint",
+		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Patient Encounter",
+		"fieldname": "examination_findings",
+		"label": "Examination Findings",
+		"fieldtype": "Text",
+		"insert_after": "history_of_present_illness",
+		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Patient Encounter",
+		"fieldname": "diagnosis_column_break",
+		"fieldtype": "Column Break",
+		"insert_after": "examination_findings",
+		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Patient Encounter",
+		"fieldname": "primary_diagnosis_code",
+		"label": "Primary Diagnosis (ICD-10)",
+		"fieldtype": "Link",
+		"options": "ICD10 Code",
+		"insert_after": "diagnosis_column_break",
+		"in_list_view": 1,
+		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Patient Encounter",
+		"fieldname": "treatment_plan",
+		"label": "Treatment Plan",
+		"fieldtype": "Text",
+		"insert_after": "primary_diagnosis_code",
+		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Patient Encounter",
+		"fieldname": "follow_up_date",
+		"label": "Follow Up Date",
+		"fieldtype": "Date",
+		"insert_after": "treatment_plan",
+		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Patient Encounter",
+		"fieldname": "clinical_notes",
+		"label": "Clinical Notes",
+		"fieldtype": "Text Editor",
+		"insert_after": "follow_up_date",
+		"description": "Supports voice dictation from the EMR screen (Web Speech API) in addition to typing.",
+		"module": "Healthcare ERP"
 	}
 ]

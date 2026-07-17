@@ -32,6 +32,7 @@ fixtures = [
 	{"dt": "Workflow State"},
 	{"dt": "Workflow Action Master"},
 	{"dt": "Print Format", "filters": [["module", "=", "Healthcare ERP"]]},
+	{"dt": "ICD10 Code"},
 ]
 
 doc_events = {

@@ -41,6 +41,21 @@ def parsed_list_args(default_order_by: str = "modified desc", max_page_size: int
 	}
 
 
+def set_if_field_exists(doc, values: dict):
+	"""Set only the fields that actually exist on `doc`'s doctype.
+
+	Core ERPNext doctypes (Patient Encounter, Vital Signs, ...) evolve across
+	versions and forks; endpoints that populate them defensively via this
+	helper keep working even if a particular field was renamed/removed
+	upstream, instead of hard-failing on `doc.update(...)`.
+	"""
+	meta = frappe.get_meta(doc.doctype)
+	for fieldname, value in values.items():
+		if meta.get_field(fieldname) or fieldname in ("patient", "practitioner"):
+			doc.set(fieldname, value)
+	return doc
+
+
 def require_doctype_permission(doctype: str, ptype: str = "read", doc=None):
 	if not frappe.has_permission(doctype, ptype=ptype, doc=doc):
 		frappe.throw(

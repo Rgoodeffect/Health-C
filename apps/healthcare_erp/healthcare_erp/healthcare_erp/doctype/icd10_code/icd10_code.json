@@ -1,0 +1,23 @@
+{
+  "doctype": "DocType",
+  "name": "ICD10 Code",
+  "module": "Healthcare ERP",
+  "custom": 0,
+  "naming_rule": "By fieldname",
+  "autoname": "field:code",
+  "sort_field": "code",
+  "sort_order": "ASC",
+  "quick_entry": 1,
+  "engine": "InnoDB",
+  "fields": [
+    { "fieldname": "code", "label": "ICD-10 Code", "fieldtype": "Data", "reqd": 1, "unique": 1, "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "title", "label": "Title", "fieldtype": "Data", "reqd": 1, "in_list_view": 1, "in_global_search": 1 },
+    { "fieldname": "category", "label": "Category", "fieldtype": "Data", "in_standard_filter": 1, "in_list_view": 1 }
+  ],
+  "permissions": [
+    { "role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1, "report": 1, "export": 1 },
+    { "role": "Doctor", "read": 1 },
+    { "role": "Nurse", "read": 1 },
+    { "role": "Medical Director", "read": 1 }
+  ]
+}

@@ -81,7 +81,8 @@ ROLE_PERMISSION_MATRIX: dict[str, dict[str, dict]] = {
 		"Lab Test": READ_CREATE,
 		"Clinical Procedure": READ_CREATE,
 		"Drug Prescription": READ_CREATE,
-		"Clinical Alert": READ,
+		"Clinical Alert": {**READ, "write": 1},
+		"ICD10 Code": READ,
 		"Inpatient Record": READ_CREATE,
 	},
 	"Nurse": {
@@ -90,7 +91,7 @@ ROLE_PERMISSION_MATRIX: dict[str, dict[str, dict]] = {
 		"Nursing Note": READ_CREATE,
 		"Inpatient Record": READ_CREATE,
 		"Bed Transfer Request": READ_CREATE,
-		"Clinical Alert": READ,
+		"Clinical Alert": {**READ, "write": 1},
 	},
 	"Laboratory Technician": {
 		"Lab Test": {**CLINICAL, "delete": 0},
