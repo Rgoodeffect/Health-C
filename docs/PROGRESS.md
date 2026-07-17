@@ -15,7 +15,7 @@ Legend: ✅ done · 🚧 in progress · ⬜ queued
 | 8 | Admission & Bed Management | ✅ | ✅ | ⬜ |
 | 9 | Surgery & Operating Theatre | ✅ | ✅ | ⬜ |
 | 10 | Pharmacy | ✅ | ✅ | ⬜ |
-| 11 | Billing & Cashier | ⬜ | ⬜ | ⬜ |
+| 11 | Billing & Cashier | ✅ | ✅ | ⬜ |
 | 12 | Insurance Management | ⬜ | ⬜ | ⬜ |
 | 13 | Executive Dashboards | ⬜ | ⬜ | ⬜ |
 | 14 | Patient Portal | ⬜ | ⬜ | ⬜ |
@@ -139,6 +139,16 @@ Each row is committed to `claude/healthcare-management-system-xxor9g` as it comp
 - Frontend: dispensing workflow with witness gate, expiring-batches view, controlled drug
   register.
 
-**Not yet built:** demo/seed data for modules 0–3/5–10, and modules 11–14's own doctypes/screens (the
+**Module 11 — Billing & Cashier**
+- `Daily Cash Closing` doctype (auto-computes total collected + cash variance) alongside core
+  `Sales Invoice`/`Payment Entry`; implemented `doc_events/billing.py` (referenced since the
+  foundation commit but not yet built) to roll POS cash invoices into the cashier's daily
+  closing automatically.
+- `healthcare_erp/api/billing.py`: invoice creation with immediate POS payment, payment
+  recording across Cash/Card/Bank Transfer/Mobile Payment, deposits, refunds, revenue
+  summary, cash-closing submission.
+- Frontend: invoicing + payment recording, deposits/refunds, daily cash closing with history.
+
+**Not yet built:** demo/seed data for modules 0–3/5–11, and modules 12–14's own doctypes/screens (the
 Patient 360 tabs already render live data from core ERPNext doctypes as those modules land —
 no frontend rework needed later, just backend doctypes + richer detail screens).
