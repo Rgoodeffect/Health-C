@@ -18,7 +18,7 @@ Legend: ✅ done · 🚧 in progress · ⬜ queued
 | 11 | Billing & Cashier | ✅ | ✅ | ⬜ |
 | 12 | Insurance Management | ✅ | ✅ | ⬜ |
 | 13 | Executive Dashboards | ✅ | ✅ | ⬜ |
-| 14 | Patient Portal | ⬜ | ⬜ | ⬜ |
+| 14 | Patient Portal | ✅ | ✅ | ⬜ |
 | — | Docker deployment (dev + prod) | ⬜ | | |
 | — | Installation / Deployment guides | ⬜ | | |
 
@@ -166,6 +166,16 @@ Each row is committed to `claude/healthcare-management-system-xxor9g` as it comp
   cards and revenue/patient-growth trend charts (dataviz-skill-compliant single-series area
   chart).
 
-**Not yet built:** demo/seed data for modules 0–3/5–13, and Module 14's own doctypes/screens (the
-Patient 360 tabs already render live data from core ERPNext doctypes as those modules land —
-no frontend rework needed later, just backend doctypes + richer detail screens).
+**Module 14 — Patient Portal**
+- Added the `Patient` role's permission matrix (doctype-level ceiling; record-level "own
+  record only" scoping comes from the `doc_events/patient.py` User Permission).
+- `healthcare_erp/api/portal.py`: a strictly self-service layer — every endpoint resolves the
+  calling user's own linked Patient record server-side and never accepts a `patient` argument
+  from the client. Covers appointment booking/cancellation and read-only records,
+  prescriptions, lab results, radiology reports, invoices, documents.
+- Frontend: patient-facing portal with booking + read-only tabs, plus a multipart
+  `uploadFile()` added to the Frappe client for document uploads.
+
+All 14 modules from the spec now have backend (DocTypes/API/permissions) and frontend
+screens. **Not yet built:** demo/seed data across modules, and Docker/deployment docs
+(tracked below).
