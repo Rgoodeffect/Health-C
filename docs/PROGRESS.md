@@ -11,7 +11,7 @@ Legend: ✅ done · 🚧 in progress · ⬜ queued
 | 4 | Consultation & EMR | ✅ | ✅ | ✅ |
 | 5 | Prescription Management | ✅ | ✅ | ⬜ |
 | 6 | Laboratory (LIS) | ✅ | ✅ | ⬜ |
-| 7 | Radiology (RIS) | ⬜ | ⬜ | ⬜ |
+| 7 | Radiology (RIS) | ✅ | ✅ | ⬜ |
 | 8 | Admission & Bed Management | ⬜ | ⬜ | ⬜ |
 | 9 | Surgery & Operating Theatre | ⬜ | ⬜ | ⬜ |
 | 10 | Pharmacy | ⬜ | ⬜ | ⬜ |
@@ -103,6 +103,15 @@ Each row is committed to `claude/healthcare-management-system-xxor9g` as it comp
 - Frontend: order/collect/result/verify workflow, barcode label dialog with print, unverified
   critical-results view, QC run log.
 
-**Not yet built:** demo/seed data for modules 0–3/5–6, and modules 7–14's own doctypes/screens (the
+**Module 7 — Radiology Information System**
+- `Modality`, `Radiology Order`, `Radiology Report`, `PACS Study Reference` doctypes (no core
+  ERPNext equivalent for imaging).
+- `healthcare_erp/api/radiology.py`: order/schedule/report workflow with automatic Clinical
+  Alert + realtime push on critical findings, modality management, and a PACS-ready endpoint
+  storing DICOM study/accession identifiers + a viewer deep-link.
+- Frontend: order/schedule/report workflow with priority + critical-finding badges, and
+  modality management.
+
+**Not yet built:** demo/seed data for modules 0–3/5–7, and modules 8–14's own doctypes/screens (the
 Patient 360 tabs already render live data from core ERPNext doctypes as those modules land —
 no frontend rework needed later, just backend doctypes + richer detail screens).
