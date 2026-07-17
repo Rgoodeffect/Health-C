@@ -13,7 +13,7 @@ Legend: ✅ done · 🚧 in progress · ⬜ queued
 | 6 | Laboratory (LIS) | ✅ | ✅ | ⬜ |
 | 7 | Radiology (RIS) | ✅ | ✅ | ⬜ |
 | 8 | Admission & Bed Management | ✅ | ✅ | ⬜ |
-| 9 | Surgery & Operating Theatre | ⬜ | ⬜ | ⬜ |
+| 9 | Surgery & Operating Theatre | ✅ | ✅ | ⬜ |
 | 10 | Pharmacy | ⬜ | ⬜ | ⬜ |
 | 11 | Billing & Cashier | ⬜ | ⬜ | ⬜ |
 | 12 | Insurance Management | ⬜ | ⬜ | ⬜ |
@@ -121,6 +121,15 @@ Each row is committed to `claude/healthcare-management-system-xxor9g` as it comp
 - Frontend: bed board with occupancy bars per ward, admission -> assign bed -> transfer ->
   discharge workflow, nursing notes screen.
 
-**Not yet built:** demo/seed data for modules 0–3/5–8, and modules 9–14's own doctypes/screens (the
+**Module 9 — Surgery & Operating Theatre**
+- Surgery Request (+ Surgical Team Member child table), OT Schedule, Pre Op Checklist,
+  Anesthesia Record, Surgery Note, Recovery Room Log, Implant Tracking doctypes.
+- `healthcare_erp/api/surgery.py`: request -> team assignment -> OR scheduling (with
+  double-booking prevention) -> pre-op checklist -> anesthesia -> surgery note (closes out
+  the request) -> recovery room -> implant tracking.
+- Frontend: request list with a per-surgery management dialog covering the full workflow,
+  plus a recovery room board.
+
+**Not yet built:** demo/seed data for modules 0–3/5–9, and modules 10–14's own doctypes/screens (the
 Patient 360 tabs already render live data from core ERPNext doctypes as those modules land —
 no frontend rework needed later, just backend doctypes + richer detail screens).
