@@ -87,6 +87,20 @@
     "registerSuccess": "Patient registered successfully.",
     "registerError": "Could not register patient."
   },
+  "appointments": {
+    "title": "Appointments",
+    "subtitle": "Book, reschedule, and manage the practitioner calendar.",
+    "newAppointment": "New appointment",
+    "day": "Day",
+    "week": "Week",
+    "month": "Month",
+    "today": "Today",
+    "cancel": "Cancel",
+    "rescheduled": "Appointment rescheduled.",
+    "rescheduleError": "Could not reschedule appointment.",
+    "noAppointmentsForDay": "No appointments scheduled for this day.",
+    "appointmentsCount": "{count, plural, one {# appointment} other {# appointments}}"
+  },
   "patient360": {
     "mrn": "MRN",
     "bloodGroup": "Blood group",

@@ -87,6 +87,20 @@
     "registerSuccess": "تم تسجيل المريض بنجاح.",
     "registerError": "تعذر تسجيل المريض."
   },
+  "appointments": {
+    "title": "المواعيد",
+    "subtitle": "احجز المواعيد وأعد جدولتها وأدر تقويم الأطباء.",
+    "newAppointment": "موعد جديد",
+    "day": "يوم",
+    "week": "أسبوع",
+    "month": "شهر",
+    "today": "اليوم",
+    "cancel": "إلغاء",
+    "rescheduled": "تمت إعادة جدولة الموعد.",
+    "rescheduleError": "تعذرت إعادة جدولة الموعد.",
+    "noAppointmentsForDay": "لا توجد مواعيد مجدولة لهذا اليوم.",
+    "appointmentsCount": "{count, plural, one {# موعد} other {# مواعيد}}"
+  },
   "patient360": {
     "mrn": "رقم الملف الطبي",
     "bloodGroup": "فصيلة الدم",
