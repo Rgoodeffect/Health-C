@@ -8,7 +8,7 @@ Legend: ✅ done · 🚧 in progress · ⬜ queued
 | 1 | Patient Registration | ✅ | ✅ | ⬜ |
 | 2 | Appointments | ✅ | ✅ | ⬜ |
 | 3 | Reception | ✅ | ✅ | ⬜ |
-| 4 | Consultation & EMR | ⬜ | ⬜ | ⬜ |
+| 4 | Consultation & EMR | ✅ | ✅ | ✅ |
 | 5 | Prescription Management | ⬜ | ⬜ | ⬜ |
 | 6 | Laboratory (LIS) | ⬜ | ⬜ | ⬜ |
 | 7 | Radiology (RIS) | ⬜ | ⬜ | ⬜ |
@@ -71,6 +71,19 @@ Each row is committed to `claude/healthcare-management-system-xxor9g` as it comp
 - Frontend: reception desk screen (search-to-check-in, live queue table with actions) and a
   separate kiosk-style `/reception-display` route (no app chrome) for a lobby TV.
 
-**Not yet built:** demo/seed data fixtures, and modules 4–14's own doctypes/screens (the
+**Module 4 — Consultation & EMR**
+- `Clinical Alert` + `ICD10 Code` doctypes (new), Custom Fields on core `Patient Encounter`
+  for chief complaint/history/examination/treatment plan/follow-up/clinical notes (core only
+  models symptoms/diagnosis as child tables), 32 seeded ICD-10 codes.
+- `healthcare_erp/api/encounters.py`: create/update/submit encounters, ICD-10 search, vitals
+  against core `Vital Signs`, clinical alerts, and a cross-module medical timeline. Added a
+  `set_if_field_exists()` helper so writes to core doctypes degrade gracefully if a field
+  isn't present on a given ERPNext version. Also fixed a Module-1 bug where the patients API
+  queried Patient Encounter's `symptoms`/`diagnosis` as if they were scalar fields.
+- Frontend: EMR workspace — patient search, consultation form with ICD-10 autocomplete and
+  real voice dictation (Web Speech API, graceful fallback), past consultations with sign-off,
+  clinical alerts panel, medical timeline.
+
+**Not yet built:** demo/seed data for modules 0–3, and modules 5–14's own doctypes/screens (the
 Patient 360 tabs already render live data from core ERPNext doctypes as those modules land —
 no frontend rework needed later, just backend doctypes + richer detail screens).
