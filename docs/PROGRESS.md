@@ -16,7 +16,7 @@ Legend: ✅ done · 🚧 in progress · ⬜ queued
 | 9 | Surgery & Operating Theatre | ✅ | ✅ | ⬜ |
 | 10 | Pharmacy | ✅ | ✅ | ⬜ |
 | 11 | Billing & Cashier | ✅ | ✅ | ⬜ |
-| 12 | Insurance Management | ⬜ | ⬜ | ⬜ |
+| 12 | Insurance Management | ✅ | ✅ | ⬜ |
 | 13 | Executive Dashboards | ⬜ | ⬜ | ⬜ |
 | 14 | Patient Portal | ⬜ | ⬜ | ⬜ |
 | — | Docker deployment (dev + prod) | ⬜ | | |
@@ -149,6 +149,15 @@ Each row is committed to `claude/healthcare-management-system-xxor9g` as it comp
   summary, cash-closing submission.
 - Frontend: invoicing + payment recording, deposits/refunds, daily cash closing with history.
 
-**Not yet built:** demo/seed data for modules 0–3/5–11, and modules 12–14's own doctypes/screens (the
+**Module 12 — Insurance Management**
+- `Insurance Pre Authorization`, `Insurance Claim`, `Insurance Claim Rejection`,
+  `Insurance Settlement` doctypes alongside core `Healthcare Insurance Company`/`Coverage Plan`.
+- `healthcare_erp/api/insurance.py`: eligibility verification, pre-authorization
+  request/approval, claim creation/submission, rejection + resubmission tracking, settlement
+  recording with Full Coverage/Co-Payment/Deductible support.
+- Frontend: eligibility check, pre-authorization workflow, claims with submit/reject/settle,
+  open-rejections resubmission panel, settlements ledger.
+
+**Not yet built:** demo/seed data for modules 0–3/5–12, and modules 13–14's own doctypes/screens (the
 Patient 360 tabs already render live data from core ERPNext doctypes as those modules land —
 no frontend rework needed later, just backend doctypes + richer detail screens).
