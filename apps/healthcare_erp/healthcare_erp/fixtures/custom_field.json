@@ -190,5 +190,25 @@
 		"insert_after": "follow_up_date",
 		"description": "Supports voice dictation from the EMR screen (Web Speech API) in addition to typing.",
 		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Patient",
+		"fieldname": "allergies_section",
+		"label": "Allergies",
+		"fieldtype": "Section Break",
+		"insert_after": "insurance_verified",
+		"collapsible": 1,
+		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Patient",
+		"fieldname": "allergies",
+		"label": "Known Allergies",
+		"fieldtype": "Table",
+		"options": "Patient Allergy",
+		"insert_after": "allergies_section",
+		"module": "Healthcare ERP"
 	}
 ]

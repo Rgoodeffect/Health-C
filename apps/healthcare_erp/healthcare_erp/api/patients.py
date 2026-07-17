@@ -107,9 +107,13 @@ def patient_360(patient: str):
 
 
 def _overview(doc):
+	# `allergies` is a Table field (Module 5's Patient Allergy child doctype) —
+	# frappe.get_all cannot select table fields directly, so the child rows
+	# are queried by parent instead.
 	allergies = frappe.get_all(
-		"Patient", filters={"name": doc.name}, fields=["allergies"],
-	) if frappe.get_meta("Patient").get_field("allergies") else []
+		"Patient Allergy", filters={"parent": doc.name, "parenttype": "Patient"},
+		fields=["allergen", "reaction", "severity"],
+	) if frappe.db.exists("DocType", "Patient Allergy") else []
 	return {
 		"patient_name": doc.patient_name,
 		"mrn": doc.name,

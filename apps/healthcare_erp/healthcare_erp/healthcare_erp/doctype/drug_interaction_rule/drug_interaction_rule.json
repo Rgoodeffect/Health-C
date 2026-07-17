@@ -1,0 +1,23 @@
+{
+  "doctype": "DocType",
+  "name": "Drug Interaction Rule",
+  "module": "Healthcare ERP",
+  "custom": 0,
+  "naming_rule": "Random",
+  "autoname": "hash",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "fields": [
+    { "fieldname": "drug_a", "label": "Drug A", "fieldtype": "Link", "options": "Item", "reqd": 1, "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "drug_b", "label": "Drug B", "fieldtype": "Link", "options": "Item", "reqd": 1, "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "column_break_1", "fieldtype": "Column Break" },
+    { "fieldname": "severity", "label": "Severity", "fieldtype": "Select", "options": "Minor\nModerate\nMajor", "default": "Moderate", "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "description", "label": "Description", "fieldtype": "Small Text" }
+  ],
+  "permissions": [
+    { "role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1, "report": 1, "export": 1 },
+    { "role": "Doctor", "read": 1 },
+    { "role": "Pharmacist", "read": 1 }
+  ]
+}

@@ -84,6 +84,8 @@ ROLE_PERMISSION_MATRIX: dict[str, dict[str, dict]] = {
 		"Clinical Alert": {**READ, "write": 1},
 		"ICD10 Code": READ,
 		"Inpatient Record": READ_CREATE,
+		"Drug Interaction Rule": READ,
+		"Prescription Refill": READ_CREATE,
 	},
 	"Nurse": {
 		"Patient": READ,
@@ -112,6 +114,8 @@ ROLE_PERMISSION_MATRIX: dict[str, dict[str, dict]] = {
 		"Dispensing Log": CRUD,
 		"Controlled Drug Register": CRUD,
 		"Stock Entry": READ_CREATE,
+		"Drug Interaction Rule": READ,
+		"Prescription Refill": CRUD,
 	},
 	"Cashier": {
 		"Sales Invoice": {**CLINICAL, "delete": 0},
