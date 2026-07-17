@@ -2,7 +2,8 @@
 
 import { useTranslations } from "next-intl";
 import { Users, CalendarClock, Activity, TrendingUp } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
+import { KpiCard } from "@/components/kpi-card";
 import { useWhoAmI } from "@/lib/api/auth";
 import { usePatients } from "@/lib/api/patients";
 import { navItemsForRoles } from "@/lib/constants/nav";
@@ -56,41 +57,5 @@ export default function DashboardPage() {
         </CardContent>
       </Card>
     </div>
-  );
-}
-
-function KpiCard({
-  icon: Icon,
-  label,
-  value,
-  hint,
-  tone,
-}: {
-  icon: React.ComponentType<{ className?: string }>;
-  label: string;
-  value: string;
-  hint?: string;
-  tone: "primary" | "success" | "warning" | "danger";
-}) {
-  const toneClass = {
-    primary: "bg-primary/10 text-primary",
-    success: "bg-success/10 text-success",
-    warning: "bg-warning/10 text-warning",
-    danger: "bg-danger/10 text-danger",
-  }[tone];
-
-  return (
-    <Card>
-      <CardContent className="flex items-center gap-4 p-5">
-        <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-[var(--radius-md)] ${toneClass}`}>
-          <Icon className="h-5 w-5" />
-        </div>
-        <div>
-          <p className="text-2xl font-semibold leading-none">{value}</p>
-          <p className="mt-1 text-xs text-muted-foreground">{label}</p>
-          {hint && <p className="text-[11px] text-muted-foreground/70">{hint}</p>}
-        </div>
-      </CardContent>
-    </Card>
   );
 }

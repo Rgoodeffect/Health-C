@@ -65,11 +65,19 @@ def check_drug_expiry():
 
 
 def build_executive_kpi_snapshot():
-	"""Daily: materialize yesterday's KPIs for the Executive Dashboards
-	module. No-op until `Executive KPI Snapshot` (Module 13) is installed."""
+	"""Daily: materialize today's KPIs for the Executive Dashboards' trend
+	charts, reusing the same computation the live dashboard calls."""
 	if not frappe.db.exists("DocType", "Executive KPI Snapshot"):
 		return
-	frappe.get_doc({"doctype": "Executive KPI Snapshot", "snapshot_date": today()}).insert(ignore_permissions=True)
+
+	from healthcare_erp.api.analytics import compute_live_kpis
+
+	kpis = compute_live_kpis()
+	existing = frappe.db.exists("Executive KPI Snapshot", today())
+	doc = frappe.get_doc("Executive KPI Snapshot", today()) if existing else frappe.new_doc("Executive KPI Snapshot")
+	doc.snapshot_date = today()
+	doc.update(kpis)
+	doc.save(ignore_permissions=True) if existing else doc.insert(ignore_permissions=True)
 
 
 def close_stale_queue_tokens():

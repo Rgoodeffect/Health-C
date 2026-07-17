@@ -1,0 +1,35 @@
+{
+  "doctype": "DocType",
+  "name": "Executive KPI Snapshot",
+  "module": "Healthcare ERP",
+  "custom": 0,
+  "naming_rule": "By fieldname",
+  "autoname": "field:snapshot_date",
+  "sort_field": "snapshot_date",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "fields": [
+    { "fieldname": "snapshot_date", "label": "Snapshot Date", "fieldtype": "Date", "reqd": 1, "unique": 1, "in_list_view": 1 },
+    { "fieldname": "column_break_1", "fieldtype": "Column Break" },
+    { "fieldname": "total_patients", "label": "Total Patients", "fieldtype": "Int" },
+    { "fieldname": "new_patients_today", "label": "New Patients Today", "fieldtype": "Int" },
+    { "fieldname": "section_break_1", "fieldtype": "Section Break", "label": "Operations" },
+    { "fieldname": "appointments_today", "label": "Appointments Today", "fieldtype": "Int" },
+    { "fieldname": "active_admissions", "label": "Active Admissions", "fieldtype": "Int" },
+    { "fieldname": "bed_occupancy_pct", "label": "Bed Occupancy %", "fieldtype": "Percent" },
+    { "fieldname": "column_break_2", "fieldtype": "Column Break" },
+    { "fieldname": "surgeries_mtd", "label": "Surgeries (MTD)", "fieldtype": "Int" },
+    { "fieldname": "lab_tests_today", "label": "Lab Tests Today", "fieldtype": "Int" },
+    { "fieldname": "radiology_orders_today", "label": "Radiology Orders Today", "fieldtype": "Int" },
+    { "fieldname": "pharmacy_dispensed_today", "label": "Pharmacy Items Dispensed Today", "fieldtype": "Int" },
+    { "fieldname": "section_break_2", "fieldtype": "Section Break", "label": "Finance" },
+    { "fieldname": "revenue_mtd", "label": "Revenue (MTD)", "fieldtype": "Currency" },
+    { "fieldname": "collections_mtd", "label": "Collections (MTD)", "fieldtype": "Currency" },
+    { "fieldname": "column_break_3", "fieldtype": "Column Break" },
+    { "fieldname": "claims_submitted_mtd", "label": "Claims Submitted (MTD)", "fieldtype": "Int" },
+    { "fieldname": "claims_settled_mtd", "label": "Claims Settled (MTD)", "fieldtype": "Int" }
+  ],
+  "permissions": [
+    { "role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1, "report": 1, "export": 1 }
+  ]
+}

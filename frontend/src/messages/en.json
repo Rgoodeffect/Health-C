@@ -517,6 +517,28 @@
     "settlementDate": "Settlement date",
     "noSettlements": "No settlements recorded yet."
   },
+  "analytics": {
+    "title": "Executive Dashboards",
+    "subtitle": "Live operational, clinical, and financial performance across the medical center.",
+    "tabCeo": "CEO",
+    "tabMedical": "Medical Director",
+    "tabFinance": "Finance",
+    "tabOperations": "Operations",
+    "kpiTotalPatients": "Total patients",
+    "kpiRevenueMtd": "Revenue (MTD)",
+    "kpiOccupancy": "Bed occupancy",
+    "kpiActiveAdmissions": "Active admissions",
+    "kpiAppointmentsToday": "Appointments today",
+    "kpiLabToday": "Lab tests today",
+    "kpiRadiologyToday": "Radiology orders today",
+    "kpiSurgeriesMtd": "Surgeries (MTD)",
+    "kpiCollectionsMtd": "Collections (MTD)",
+    "kpiClaimsSubmitted": "Claims submitted (MTD)",
+    "kpiClaimsSettled": "Claims settled (MTD)",
+    "kpiPharmacyToday": "Items dispensed today",
+    "revenueTrend": "Revenue trend (30 days)",
+    "patientGrowth": "New patient registrations (30 days)"
+  },
   "patient360": {
     "mrn": "MRN",
     "bloodGroup": "Blood group",

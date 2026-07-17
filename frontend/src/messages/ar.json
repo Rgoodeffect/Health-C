@@ -517,6 +517,28 @@
     "settlementDate": "تاريخ التسوية",
     "noSettlements": "لا توجد تسويات مسجلة بعد."
   },
+  "analytics": {
+    "title": "لوحات المعلومات التنفيذية",
+    "subtitle": "الأداء التشغيلي والسريري والمالي الحي عبر المركز الطبي.",
+    "tabCeo": "الرئيس التنفيذي",
+    "tabMedical": "المدير الطبي",
+    "tabFinance": "المالية",
+    "tabOperations": "العمليات",
+    "kpiTotalPatients": "إجمالي المرضى",
+    "kpiRevenueMtd": "الإيرادات (الشهر الحالي)",
+    "kpiOccupancy": "نسبة إشغال الأسرّة",
+    "kpiActiveAdmissions": "الإدخالات النشطة",
+    "kpiAppointmentsToday": "مواعيد اليوم",
+    "kpiLabToday": "تحاليل اليوم",
+    "kpiRadiologyToday": "طلبات الأشعة اليوم",
+    "kpiSurgeriesMtd": "العمليات (الشهر الحالي)",
+    "kpiCollectionsMtd": "التحصيلات (الشهر الحالي)",
+    "kpiClaimsSubmitted": "المطالبات المقدمة (الشهر الحالي)",
+    "kpiClaimsSettled": "المطالبات المسوّاة (الشهر الحالي)",
+    "kpiPharmacyToday": "الأصناف المصروفة اليوم",
+    "revenueTrend": "اتجاه الإيرادات (30 يومًا)",
+    "patientGrowth": "تسجيلات المرضى الجدد (30 يومًا)"
+  },
   "patient360": {
     "mrn": "رقم الملف الطبي",
     "bloodGroup": "فصيلة الدم",
