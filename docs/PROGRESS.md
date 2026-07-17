@@ -14,7 +14,7 @@ Legend: ✅ done · 🚧 in progress · ⬜ queued
 | 7 | Radiology (RIS) | ✅ | ✅ | ⬜ |
 | 8 | Admission & Bed Management | ✅ | ✅ | ⬜ |
 | 9 | Surgery & Operating Theatre | ✅ | ✅ | ⬜ |
-| 10 | Pharmacy | ⬜ | ⬜ | ⬜ |
+| 10 | Pharmacy | ✅ | ✅ | ⬜ |
 | 11 | Billing & Cashier | ⬜ | ⬜ | ⬜ |
 | 12 | Insurance Management | ⬜ | ⬜ | ⬜ |
 | 13 | Executive Dashboards | ⬜ | ⬜ | ⬜ |
@@ -130,6 +130,15 @@ Each row is committed to `claude/healthcare-management-system-xxor9g` as it comp
 - Frontend: request list with a per-surgery management dialog covering the full workflow,
   plus a recovery room board.
 
-**Not yet built:** demo/seed data for modules 0–3/5–9, and modules 10–14's own doctypes/screens (the
+**Module 10 — Pharmacy**
+- `Dispensing Log`, `Controlled Drug Register` doctypes alongside core `Item`/`Batch`/
+  `Stock Entry`; Custom Fields flag controlled substances + schedule on `Item`.
+- `healthcare_erp/api/pharmacy.py`: drug/batch search, expiring-batch alerts, dispensing
+  (witness-gated for controlled substances, running balance in the register), stock
+  transfers via core Stock Entry, stock level lookups via core Bin.
+- Frontend: dispensing workflow with witness gate, expiring-batches view, controlled drug
+  register.
+
+**Not yet built:** demo/seed data for modules 0–3/5–10, and modules 11–14's own doctypes/screens (the
 Patient 360 tabs already render live data from core ERPNext doctypes as those modules land —
 no frontend rework needed later, just backend doctypes + richer detail screens).
