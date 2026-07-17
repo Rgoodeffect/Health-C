@@ -6,7 +6,7 @@ Legend: ✅ done · 🚧 in progress · ⬜ queued
 |---|---|---|---|---|
 | 0 | Platform foundation (app skeleton, roles, auth, design system, shell, i18n) | ✅ | ✅ | ⬜ |
 | 1 | Patient Registration | ✅ | ✅ | ⬜ |
-| 2 | Appointments | ⬜ | ⬜ | ⬜ |
+| 2 | Appointments | ✅ | ✅ | ⬜ |
 | 3 | Reception | ⬜ | ⬜ | ⬜ |
 | 4 | Consultation & EMR | ⬜ | ⬜ | ⬜ |
 | 5 | Prescription Management | ⬜ | ⬜ | ⬜ |
@@ -53,6 +53,14 @@ Each row is committed to `claude/healthcare-management-system-xxor9g` as it comp
 - Frontend: patient list with search/pagination/register dialog, and the full Patient 360
   profile page with all 11 tabs, wired end-to-end to the API above.
 
-**Not yet built:** demo/seed data fixtures, and modules 2–14's own doctypes/screens (the
+**Module 2 — Appointments**
+- `Appointment Waiting List` doctype (new) alongside core `Patient Appointment`.
+- `healthcare_erp/api/appointments.py`: day/week/month range queries, drag-and-drop
+  reschedule, cancel, and waiting-list CRUD with auto-fulfillment when a matching
+  appointment is booked for a waiting patient.
+- Frontend: day/week/month calendar with native HTML5 drag-and-drop rescheduling on the
+  week grid, and month-view drill-down into a day.
+
+**Not yet built:** demo/seed data fixtures, and modules 3–14's own doctypes/screens (the
 Patient 360 tabs already render live data from core ERPNext doctypes as those modules land —
 no frontend rework needed later, just backend doctypes + richer detail screens).
