@@ -5,8 +5,17 @@ Frappe Framework 16**, with a fully custom **Next.js 16** frontend (Tailwind CSS
 UI, Zustand, TanStack Query) as the only user-facing surface — English/Arabic with full RTL
 support, light/dark themes, and a modern SaaS design system (not the default ERPNext Desk UI).
 
+All 14 modules from the spec (Patient Registration, Appointments, Reception,
+Consultation & EMR, Prescriptions, Laboratory, Radiology, Admissions & Bed Management,
+Surgery & OT, Pharmacy, Billing & Cashier, Insurance, Executive Dashboards, Patient Portal)
+are implemented end to end — backend DocTypes/API/permissions and a matching Next.js screen
+for each. See [`docs/PROGRESS.md`](docs/PROGRESS.md) for the detailed breakdown.
+
 - **Architecture & design decisions:** [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
 - **Build status by module:** [`docs/PROGRESS.md`](docs/PROGRESS.md)
+- **Role/permission matrix:** [`docs/PERMISSIONS_MATRIX.md`](docs/PERMISSIONS_MATRIX.md)
+- **Bench installation guide:** [`docs/INSTALLATION.md`](docs/INSTALLATION.md)
+- **Docker production deployment:** [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md)
 - **Backend app:** [`apps/healthcare_erp`](apps/healthcare_erp) — a Frappe custom app that
   extends ERPNext's Healthcare domain
 - **Frontend:** [`frontend`](frontend) — Next.js 16 App Router SPA
@@ -33,5 +42,23 @@ npm run dev
 
 Then open `http://localhost:3000` — English/Arabic are available at `/en` and `/ar`.
 
-See [`docs/INSTALLATION.md`](docs/INSTALLATION.md) and [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md)
-(added as those modules land) for full setup and production Docker deployment instructions.
+## Production deployment
+
+```bash
+cp docker/.env.example docker/.env   # set real passwords
+docker compose -f docker/docker-compose.yml --env-file docker/.env up -d --build
+```
+
+See [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) for the full walkthrough (TLS, backups,
+scaling), and [`docs/INSTALLATION.md`](docs/INSTALLATION.md) for a bare-metal bench setup
+instead.
+
+## Demo data
+
+```bash
+docker compose -f docker/docker-compose.yml exec backend \
+  bench --site healthc.local execute healthcare_erp.patches.create_demo_data.execute
+```
+
+Seeds ~20 practitioners, ~25 patients, and appointments/encounters/lab/radiology orders
+across them.

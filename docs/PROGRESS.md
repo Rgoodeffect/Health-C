@@ -9,18 +9,22 @@ Legend: ✅ done · 🚧 in progress · ⬜ queued
 | 2 | Appointments | ✅ | ✅ | ⬜ |
 | 3 | Reception | ✅ | ✅ | ⬜ |
 | 4 | Consultation & EMR | ✅ | ✅ | ✅ |
-| 5 | Prescription Management | ✅ | ✅ | ⬜ |
-| 6 | Laboratory (LIS) | ✅ | ✅ | ⬜ |
-| 7 | Radiology (RIS) | ✅ | ✅ | ⬜ |
-| 8 | Admission & Bed Management | ✅ | ✅ | ⬜ |
+| 5 | Prescription Management | ✅ | ✅ | 🔶 |
+| 6 | Laboratory (LIS) | ✅ | ✅ | 🔶 |
+| 7 | Radiology (RIS) | ✅ | ✅ | 🔶 |
+| 8 | Admission & Bed Management | ✅ | ✅ | 🔶 |
 | 9 | Surgery & Operating Theatre | ✅ | ✅ | ⬜ |
 | 10 | Pharmacy | ✅ | ✅ | ⬜ |
 | 11 | Billing & Cashier | ✅ | ✅ | ⬜ |
 | 12 | Insurance Management | ✅ | ✅ | ⬜ |
 | 13 | Executive Dashboards | ✅ | ✅ | ⬜ |
-| 14 | Patient Portal | ✅ | ✅ | ⬜ |
-| — | Docker deployment (dev + prod) | ⬜ | | |
-| — | Installation / Deployment guides | ⬜ | | |
+| 14 | Patient Portal | ✅ | ✅ | n/a (self-service, no seed data) |
+| — | Docker deployment (dev + prod) | ✅ | | |
+| — | Installation / Deployment guides | ✅ | | |
+
+🔶 = covered by the cross-module demo data script (`create_demo_data.py`) generating
+patients/practitioners/appointments/encounters/lab+radiology orders, rather than a
+per-module fixture.
 
 Each row is committed to `claude/healthcare-management-system-xxor9g` as it completes.
 
@@ -177,5 +181,31 @@ Each row is committed to `claude/healthcare-management-system-xxor9g` as it comp
   `uploadFile()` added to the Frappe client for document uploads.
 
 All 14 modules from the spec now have backend (DocTypes/API/permissions) and frontend
-screens. **Not yet built:** demo/seed data across modules, and Docker/deployment docs
-(tracked below).
+screens.
+
+**Docker deployment**
+- `docker/docker-compose.yml`: MariaDB, Redis (cache + queue), Frappe backend (web/worker/
+  scheduler/websocket — one custom image, different `command`s, the standard frappe_docker
+  pattern), the Next.js frontend, and Nginx in front of both. Validated with
+  `docker compose config` (parses/resolves cleanly); full image builds need registry access
+  this sandbox's network policy blocks, so build/run it in a normal Docker environment per
+  `docs/DEPLOYMENT.md`.
+- `docker/frappe/Dockerfile` + `entrypoint.sh`: layers `healthcare_erp` onto the official
+  `frappe/erpnext` image; entrypoint creates the site + installs apps on first boot (guarded
+  by a marker so it's safe on every restart), then execs the right process for
+  `SERVICE_ROLE` (web/worker/scheduler/websocket).
+- `docker/frontend/Dockerfile`: multi-stage Next.js standalone build — this one **is**
+  verified end-to-end (`next build` with `output: "standalone"`, image layers copy the real
+  `.next/standalone` output).
+- `docker/nginx/nginx.conf`: SPA at `/`, `/api` + `/backend-api` + `/app` to the backend,
+  `/socket.io` to the websocket service, `/assets` served directly off the shared sites volume.
+
+**Demo/seed data**: `apps/healthcare_erp/healthcare_erp/patches/create_demo_data.py` (not
+in `patches.txt`, so it never auto-runs) seeds ~20 practitioners, ~25 patients, and
+appointments/encounters/lab/radiology orders across them — run manually via
+`bench execute healthcare_erp.patches.create_demo_data.execute`. Module 4's 32 ICD-10 codes
+are seeded as a proper fixture (auto-applied on install).
+
+**Docs**: `docs/INSTALLATION.md` (bare-metal bench setup) and `docs/DEPLOYMENT.md` (Docker
+production deployment — TLS, backups, scaling, updates) added; `docs/PERMISSIONS_MATRIX.md`
+renders `setup/roles.py`'s matrix as a human-readable table.

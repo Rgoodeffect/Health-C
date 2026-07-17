@@ -5,6 +5,8 @@ const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  // Minimal, self-contained server bundle for the Docker image (docker/frontend/Dockerfile)
+  output: "standalone",
   images: {
     remotePatterns: [
       { protocol: "http", hostname: "localhost" },

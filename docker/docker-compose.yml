@@ -1,0 +1,159 @@
+# Production-shaped Docker Compose stack for Health-C.
+#
+# Run from the repo root:
+#   cp docker/.env.example docker/.env   # fill in real secrets
+#   docker compose -f docker/docker-compose.yml --env-file docker/.env up -d --build
+#
+# First boot creates the site and installs erpnext + healthcare_erp, which
+# takes several minutes — follow logs with `docker compose logs -f backend`.
+# See docs/DEPLOYMENT.md for the full walkthrough.
+
+name: healthc
+
+services:
+  mariadb:
+    image: mariadb:10.6
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --innodb-buffer-pool-size=256M
+      - --skip-character-set-client-handshake
+      - --skip-innodb-read-only-compressed
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-proot", "-p${DB_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  redis-cache:
+    image: redis:7-alpine
+    restart: unless-stopped
+    volumes:
+      - redis-cache-data:/data
+
+  redis-queue:
+    image: redis:7-alpine
+    restart: unless-stopped
+    volumes:
+      - redis-queue-data:/data
+
+  backend:
+    build:
+      context: ..
+      dockerfile: docker/frappe/Dockerfile
+      args:
+        ERPNEXT_VERSION: ${ERPNEXT_VERSION:-version-16}
+    restart: unless-stopped
+    environment:
+      SERVICE_ROLE: web
+      SITE_NAME: ${SITE_NAME:-healthc.local}
+      DB_HOST: mariadb
+      DB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      REDIS_CACHE_HOST: redis-cache
+      REDIS_QUEUE_HOST: redis-queue
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost}
+    volumes:
+      - sites-data:/home/frappe/frappe-bench/sites
+    depends_on:
+      mariadb:
+        condition: service_healthy
+      redis-cache:
+        condition: service_started
+      redis-queue:
+        condition: service_started
+
+  worker:
+    build:
+      context: ..
+      dockerfile: docker/frappe/Dockerfile
+      args:
+        ERPNEXT_VERSION: ${ERPNEXT_VERSION:-version-16}
+    restart: unless-stopped
+    environment:
+      SERVICE_ROLE: worker
+      SITE_NAME: ${SITE_NAME:-healthc.local}
+      DB_HOST: mariadb
+      DB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      REDIS_CACHE_HOST: redis-cache
+      REDIS_QUEUE_HOST: redis-queue
+    volumes:
+      - sites-data:/home/frappe/frappe-bench/sites
+    depends_on:
+      backend:
+        condition: service_started
+
+  scheduler:
+    build:
+      context: ..
+      dockerfile: docker/frappe/Dockerfile
+      args:
+        ERPNEXT_VERSION: ${ERPNEXT_VERSION:-version-16}
+    restart: unless-stopped
+    environment:
+      SERVICE_ROLE: scheduler
+      SITE_NAME: ${SITE_NAME:-healthc.local}
+      DB_HOST: mariadb
+      DB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      REDIS_CACHE_HOST: redis-cache
+      REDIS_QUEUE_HOST: redis-queue
+    volumes:
+      - sites-data:/home/frappe/frappe-bench/sites
+    depends_on:
+      backend:
+        condition: service_started
+
+  websocket:
+    build:
+      context: ..
+      dockerfile: docker/frappe/Dockerfile
+      args:
+        ERPNEXT_VERSION: ${ERPNEXT_VERSION:-version-16}
+    restart: unless-stopped
+    environment:
+      SERVICE_ROLE: websocket
+      SITE_NAME: ${SITE_NAME:-healthc.local}
+      DB_HOST: mariadb
+      DB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      REDIS_CACHE_HOST: redis-cache
+      REDIS_QUEUE_HOST: redis-queue
+    volumes:
+      - sites-data:/home/frappe/frappe-bench/sites
+    depends_on:
+      backend:
+        condition: service_started
+
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: ../docker/frontend/Dockerfile
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+
+  nginx:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    ports:
+      - "${HTTP_PORT:-80}:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - sites-data:/home/frappe/frappe-bench/sites:ro
+    depends_on:
+      - backend
+      - frontend
+      - websocket
+
+volumes:
+  mariadb-data:
+  redis-cache-data:
+  redis-queue-data:
+  sites-data:
