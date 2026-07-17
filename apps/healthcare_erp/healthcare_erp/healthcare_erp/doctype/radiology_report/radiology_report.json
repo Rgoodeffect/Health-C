@@ -1,0 +1,29 @@
+{
+  "doctype": "DocType",
+  "name": "Radiology Report",
+  "module": "Healthcare ERP",
+  "custom": 0,
+  "naming_rule": "Random",
+  "autoname": "hash",
+  "sort_field": "reported_on",
+  "sort_order": "DESC",
+  "track_changes": 1,
+  "engine": "InnoDB",
+  "fields": [
+    { "fieldname": "radiology_order", "label": "Radiology Order", "fieldtype": "Link", "options": "Radiology Order", "reqd": 1, "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "patient", "label": "Patient", "fieldtype": "Link", "options": "Patient", "fetch_from": "radiology_order.patient", "read_only": 1, "in_list_view": 1 },
+    { "fieldname": "radiologist", "label": "Radiologist", "fieldtype": "Link", "options": "User", "default": "__user", "in_list_view": 1 },
+    { "fieldname": "column_break_1", "fieldtype": "Column Break" },
+    { "fieldname": "reported_on", "label": "Reported On", "fieldtype": "Datetime", "default": "now", "read_only": 1, "in_list_view": 1 },
+    { "fieldname": "status", "label": "Status", "fieldtype": "Select", "options": "Draft\nFinal\nAmended", "default": "Draft", "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "section_break_1", "fieldtype": "Section Break" },
+    { "fieldname": "findings", "label": "Findings", "fieldtype": "Text Editor" },
+    { "fieldname": "impression", "label": "Impression", "fieldtype": "Text Editor" },
+    { "fieldname": "section_break_2", "fieldtype": "Section Break" },
+    { "fieldname": "critical_finding", "label": "Critical Finding", "fieldtype": "Check", "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "critical_finding_notes", "label": "Critical Finding Notes", "fieldtype": "Small Text", "depends_on": "critical_finding" }
+  ],
+  "permissions": [
+    { "role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1, "report": 1, "export": 1 }
+  ]
+}

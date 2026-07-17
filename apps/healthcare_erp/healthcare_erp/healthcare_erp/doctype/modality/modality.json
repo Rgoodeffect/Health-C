@@ -1,0 +1,23 @@
+{
+  "doctype": "DocType",
+  "name": "Modality",
+  "module": "Healthcare ERP",
+  "custom": 0,
+  "naming_rule": "By fieldname",
+  "autoname": "field:modality_code",
+  "sort_field": "modality_code",
+  "sort_order": "ASC",
+  "engine": "InnoDB",
+  "fields": [
+    { "fieldname": "modality_code", "label": "Modality Code", "fieldtype": "Data", "reqd": 1, "unique": 1, "in_list_view": 1 },
+    { "fieldname": "modality_name", "label": "Modality Name", "fieldtype": "Data", "reqd": 1, "in_list_view": 1, "in_global_search": 1 },
+    { "fieldname": "column_break_1", "fieldtype": "Column Break" },
+    { "fieldname": "service_unit", "label": "Service Unit / Room", "fieldtype": "Link", "options": "Healthcare Service Unit" },
+    { "fieldname": "is_active", "label": "Active", "fieldtype": "Check", "default": "1", "in_list_view": 1 }
+  ],
+  "permissions": [
+    { "role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1, "report": 1, "export": 1 },
+    { "role": "Radiologist", "read": 1 },
+    { "role": "Doctor", "read": 1 }
+  ]
+}

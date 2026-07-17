@@ -86,6 +86,9 @@ ROLE_PERMISSION_MATRIX: dict[str, dict[str, dict]] = {
 		"Inpatient Record": READ_CREATE,
 		"Drug Interaction Rule": READ,
 		"Prescription Refill": READ_CREATE,
+		"Radiology Order": READ_CREATE,
+		"Radiology Report": READ,
+		"Modality": READ,
 	},
 	"Nurse": {
 		"Patient": READ,
