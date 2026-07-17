@@ -17,7 +17,7 @@ Legend: ✅ done · 🚧 in progress · ⬜ queued
 | 10 | Pharmacy | ✅ | ✅ | ⬜ |
 | 11 | Billing & Cashier | ✅ | ✅ | ⬜ |
 | 12 | Insurance Management | ✅ | ✅ | ⬜ |
-| 13 | Executive Dashboards | ⬜ | ⬜ | ⬜ |
+| 13 | Executive Dashboards | ✅ | ✅ | ⬜ |
 | 14 | Patient Portal | ⬜ | ⬜ | ⬜ |
 | — | Docker deployment (dev + prod) | ⬜ | | |
 | — | Installation / Deployment guides | ⬜ | | |
@@ -158,6 +158,14 @@ Each row is committed to `claude/healthcare-management-system-xxor9g` as it comp
 - Frontend: eligibility check, pre-authorization workflow, claims with submit/reject/settle,
   open-rejections resubmission panel, settlements ledger.
 
-**Not yet built:** demo/seed data for modules 0–3/5–12, and modules 13–14's own doctypes/screens (the
+**Module 13 — Executive Dashboards**
+- `Executive KPI Snapshot` doctype; `healthcare_erp/api/analytics.py` computes every KPI live
+  from each module's own doctypes (no duplicated ledger), gated to
+  CEO/Medical Director/Finance Director/System Manager; nightly snapshot job now populated.
+- Frontend: role-aware CEO/Medical Director/Finance/Operations dashboard tabs with live KPI
+  cards and revenue/patient-growth trend charts (dataviz-skill-compliant single-series area
+  chart).
+
+**Not yet built:** demo/seed data for modules 0–3/5–13, and Module 14's own doctypes/screens (the
 Patient 360 tabs already render live data from core ERPNext doctypes as those modules land —
 no frontend rework needed later, just backend doctypes + richer detail screens).
