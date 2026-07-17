@@ -101,6 +101,34 @@
     "noAppointmentsForDay": "No appointments scheduled for this day.",
     "appointmentsCount": "{count, plural, one {# appointment} other {# appointments}}"
   },
+  "reception": {
+    "title": "Reception",
+    "subtitle": "Check patients in, manage the queue, and verify payments.",
+    "callNext": "Call next",
+    "openDisplay": "Open waiting room display",
+    "checkIn": "Check in",
+    "checkingIn": "Checking in…",
+    "checkInSuccess": "{name} checked in.",
+    "checkInError": "Could not check in patient.",
+    "searchPatient": "Search patient by name…",
+    "noMatches": "No matching patients.",
+    "queue": "Today's queue",
+    "colToken": "Token",
+    "colPatient": "Patient",
+    "colStatus": "Status",
+    "colPayment": "Payment",
+    "emptyQueue": "No patients in queue.",
+    "verifyPayment": "Verify payment",
+    "complete": "Complete"
+  },
+  "receptionDisplay": {
+    "title": "Now serving",
+    "subtitle": "Health-C Medical Center",
+    "loading": "Loading…",
+    "empty": "No patients waiting.",
+    "noneCalled": "No one called yet.",
+    "waitingCount": "{count, plural, one {# patient waiting} other {# patients waiting}}"
+  },
   "patient360": {
     "mrn": "MRN",
     "bloodGroup": "Blood group",

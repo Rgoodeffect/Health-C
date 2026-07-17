@@ -101,6 +101,34 @@
     "noAppointmentsForDay": "لا توجد مواعيد مجدولة لهذا اليوم.",
     "appointmentsCount": "{count, plural, one {# موعد} other {# مواعيد}}"
   },
+  "reception": {
+    "title": "الاستقبال",
+    "subtitle": "سجّل حضور المرضى وأدر الطابور وتحقّق من الدفع.",
+    "callNext": "نداء التالي",
+    "openDisplay": "فتح شاشة صالة الانتظار",
+    "checkIn": "تسجيل الحضور",
+    "checkingIn": "جارٍ تسجيل الحضور…",
+    "checkInSuccess": "تم تسجيل حضور {name}.",
+    "checkInError": "تعذر تسجيل حضور المريض.",
+    "searchPatient": "ابحث عن مريض بالاسم…",
+    "noMatches": "لا يوجد مرضى مطابقون.",
+    "queue": "طابور اليوم",
+    "colToken": "الرقم",
+    "colPatient": "المريض",
+    "colStatus": "الحالة",
+    "colPayment": "الدفع",
+    "emptyQueue": "لا يوجد مرضى في الطابور.",
+    "verifyPayment": "تحقق من الدفع",
+    "complete": "إنهاء"
+  },
+  "receptionDisplay": {
+    "title": "الدور الحالي",
+    "subtitle": "مركز Health-C الطبي",
+    "loading": "جارٍ التحميل…",
+    "empty": "لا يوجد مرضى في الانتظار.",
+    "noneCalled": "لم يتم نداء أحد بعد.",
+    "waitingCount": "{count, plural, one {# مريض ينتظر} other {# مرضى ينتظرون}}"
+  },
   "patient360": {
     "mrn": "رقم الملف الطبي",
     "bloodGroup": "فصيلة الدم",
