@@ -1,0 +1,4 @@
+frappe>=16.0.0,<17.0.0
+erpnext>=16.0.0,<17.0.0
+qrcode>=7.4.2
+python-barcode>=0.15.1

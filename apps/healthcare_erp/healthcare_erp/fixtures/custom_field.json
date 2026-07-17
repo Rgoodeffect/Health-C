@@ -1,0 +1,109 @@
+[
+	{
+		"doctype": "Custom Field",
+		"dt": "Patient",
+		"fieldname": "custom_identity_section",
+		"label": "Identity Documents",
+		"fieldtype": "Section Break",
+		"insert_after": "patient_name",
+		"collapsible": 1,
+		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Patient",
+		"fieldname": "national_id",
+		"label": "National ID",
+		"fieldtype": "Data",
+		"insert_after": "custom_identity_section",
+		"unique": 1,
+		"in_standard_filter": 1,
+		"in_list_view": 1,
+		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Patient",
+		"fieldname": "passport_no",
+		"label": "Passport Number",
+		"fieldtype": "Data",
+		"insert_after": "national_id",
+		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Patient",
+		"fieldname": "identity_column_break",
+		"fieldtype": "Column Break",
+		"insert_after": "passport_no",
+		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Patient",
+		"fieldname": "qr_code",
+		"label": "Patient QR Code",
+		"fieldtype": "Attach Image",
+		"insert_after": "identity_column_break",
+		"read_only": 1,
+		"no_copy": 1,
+		"print_hide": 0,
+		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Patient",
+		"fieldname": "custom_insurance_summary_section",
+		"label": "Insurance Summary",
+		"fieldtype": "Section Break",
+		"insert_after": "qr_code",
+		"collapsible": 1,
+		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Patient",
+		"fieldname": "primary_insurance_company",
+		"label": "Primary Insurance Company",
+		"fieldtype": "Link",
+		"options": "Healthcare Insurance Company",
+		"insert_after": "custom_insurance_summary_section",
+		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Patient",
+		"fieldname": "primary_policy_number",
+		"label": "Policy / Member Number",
+		"fieldtype": "Data",
+		"insert_after": "primary_insurance_company",
+		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Patient",
+		"fieldname": "insurance_column_break",
+		"fieldtype": "Column Break",
+		"insert_after": "primary_policy_number",
+		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Patient",
+		"fieldname": "coverage_plan",
+		"label": "Coverage Plan",
+		"fieldtype": "Link",
+		"options": "Healthcare Insurance Coverage Plan",
+		"insert_after": "insurance_column_break",
+		"module": "Healthcare ERP"
+	},
+	{
+		"doctype": "Custom Field",
+		"dt": "Patient",
+		"fieldname": "insurance_verified",
+		"label": "Eligibility Verified",
+		"fieldtype": "Check",
+		"insert_after": "coverage_plan",
+		"module": "Healthcare ERP"
+	}
+]
