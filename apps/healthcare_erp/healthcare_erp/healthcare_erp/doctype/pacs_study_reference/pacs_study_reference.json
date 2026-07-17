@@ -1,0 +1,23 @@
+{
+  "doctype": "DocType",
+  "name": "PACS Study Reference",
+  "module": "Healthcare ERP",
+  "custom": 0,
+  "naming_rule": "By fieldname",
+  "autoname": "field:accession_number",
+  "sort_field": "creation",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "fields": [
+    { "fieldname": "accession_number", "label": "Accession Number", "fieldtype": "Data", "reqd": 1, "unique": 1, "in_list_view": 1 },
+    { "fieldname": "radiology_order", "label": "Radiology Order", "fieldtype": "Link", "options": "Radiology Order", "reqd": 1, "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "column_break_1", "fieldtype": "Column Break" },
+    { "fieldname": "study_instance_uid", "label": "Study Instance UID (DICOM)", "fieldtype": "Data" },
+    { "fieldname": "pacs_viewer_url", "label": "PACS Viewer URL", "fieldtype": "Data", "description": "Deep link into the hospital's PACS viewer for this study, once a PACS integration is connected." }
+  ],
+  "permissions": [
+    { "role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1, "report": 1, "export": 1 },
+    { "role": "Radiologist", "read": 1, "write": 1, "create": 1 },
+    { "role": "Doctor", "read": 1 }
+  ]
+}

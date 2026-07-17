@@ -1,0 +1,27 @@
+{
+  "doctype": "DocType",
+  "name": "Lab QC Run",
+  "module": "Healthcare ERP",
+  "custom": 0,
+  "naming_rule": "Random",
+  "autoname": "hash",
+  "sort_field": "run_on",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "fields": [
+    { "fieldname": "analyzer", "label": "Analyzer / Instrument", "fieldtype": "Data", "reqd": 1, "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "test_template", "label": "Test Template", "fieldtype": "Link", "options": "Lab Test Template", "reqd": 1, "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "control_level", "label": "Control Level", "fieldtype": "Select", "options": "Low\nNormal\nHigh", "reqd": 1, "in_list_view": 1 },
+    { "fieldname": "column_break_1", "fieldtype": "Column Break" },
+    { "fieldname": "expected_value", "label": "Expected Value", "fieldtype": "Data", "reqd": 1 },
+    { "fieldname": "measured_value", "label": "Measured Value", "fieldtype": "Data", "reqd": 1 },
+    { "fieldname": "within_range", "label": "Within Range", "fieldtype": "Check", "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "section_break_1", "fieldtype": "Section Break" },
+    { "fieldname": "run_by", "label": "Run By", "fieldtype": "Link", "options": "User", "default": "__user", "read_only": 1 },
+    { "fieldname": "run_on", "label": "Run On", "fieldtype": "Datetime", "default": "now", "read_only": 1, "in_list_view": 1 },
+    { "fieldname": "notes", "label": "Notes", "fieldtype": "Small Text" }
+  ],
+  "permissions": [
+    { "role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1, "report": 1, "export": 1 }
+  ]
+}

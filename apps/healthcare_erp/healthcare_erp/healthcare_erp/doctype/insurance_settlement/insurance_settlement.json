@@ -1,0 +1,23 @@
+{
+  "doctype": "DocType",
+  "name": "Insurance Settlement",
+  "module": "Healthcare ERP",
+  "custom": 0,
+  "naming_rule": "Random",
+  "autoname": "hash",
+  "sort_field": "settlement_date",
+  "sort_order": "DESC",
+  "track_changes": 1,
+  "engine": "InnoDB",
+  "fields": [
+    { "fieldname": "claim", "label": "Insurance Claim", "fieldtype": "Link", "options": "Insurance Claim", "reqd": 1, "unique": 1, "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "settled_amount", "label": "Settled Amount", "fieldtype": "Currency", "reqd": 1, "in_list_view": 1 },
+    { "fieldname": "column_break_1", "fieldtype": "Column Break" },
+    { "fieldname": "settlement_date", "label": "Settlement Date", "fieldtype": "Date", "default": "Today", "in_list_view": 1 },
+    { "fieldname": "payment_reference", "label": "Payment Reference", "fieldtype": "Data" },
+    { "fieldname": "status", "label": "Status", "fieldtype": "Select", "options": "Pending\nReceived", "default": "Pending", "in_list_view": 1, "in_standard_filter": 1 }
+  ],
+  "permissions": [
+    { "role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1, "report": 1, "export": 1 }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "doctype": "DocType",
+  "name": "Insurance Claim Rejection",
+  "module": "Healthcare ERP",
+  "custom": 0,
+  "naming_rule": "Random",
+  "autoname": "hash",
+  "sort_field": "rejected_on",
+  "sort_order": "DESC",
+  "track_changes": 1,
+  "engine": "InnoDB",
+  "fields": [
+    { "fieldname": "claim", "label": "Insurance Claim", "fieldtype": "Link", "options": "Insurance Claim", "reqd": 1, "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "reason", "label": "Rejection Reason", "fieldtype": "Small Text", "reqd": 1 },
+    { "fieldname": "column_break_1", "fieldtype": "Column Break" },
+    { "fieldname": "rejected_on", "label": "Rejected On", "fieldtype": "Date", "default": "Today", "in_list_view": 1 },
+    { "fieldname": "resubmission_count", "label": "Resubmission Count", "fieldtype": "Int", "default": "0", "read_only": 1, "in_list_view": 1 },
+    { "fieldname": "status", "label": "Status", "fieldtype": "Select", "options": "Open\nResubmitted\nResolved", "default": "Open", "in_list_view": 1, "in_standard_filter": 1 }
+  ],
+  "permissions": [
+    { "role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1, "report": 1, "export": 1 }
+  ]
+}

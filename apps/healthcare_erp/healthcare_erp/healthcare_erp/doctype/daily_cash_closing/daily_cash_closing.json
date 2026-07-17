@@ -1,0 +1,35 @@
+{
+  "doctype": "DocType",
+  "name": "Daily Cash Closing",
+  "module": "Healthcare ERP",
+  "custom": 0,
+  "naming_rule": "Random",
+  "autoname": "hash",
+  "sort_field": "closing_date",
+  "sort_order": "DESC",
+  "track_changes": 1,
+  "engine": "InnoDB",
+  "fields": [
+    { "fieldname": "cashier", "label": "Cashier", "fieldtype": "Link", "options": "User", "default": "__user", "reqd": 1, "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "closing_date", "label": "Closing Date", "fieldtype": "Date", "default": "Today", "reqd": 1, "unique": 1, "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "column_break_1", "fieldtype": "Column Break" },
+    { "fieldname": "status", "label": "Status", "fieldtype": "Select", "options": "Draft\nClosed", "default": "Draft", "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "section_break_1", "fieldtype": "Section Break", "label": "Collections by Payment Mode" },
+    { "fieldname": "cash_collected", "label": "Cash", "fieldtype": "Currency" },
+    { "fieldname": "card_collected", "label": "Card", "fieldtype": "Currency" },
+    { "fieldname": "column_break_2", "fieldtype": "Column Break" },
+    { "fieldname": "bank_transfer_collected", "label": "Bank Transfer", "fieldtype": "Currency" },
+    { "fieldname": "mobile_payment_collected", "label": "Mobile Payment", "fieldtype": "Currency" },
+    { "fieldname": "section_break_2", "fieldtype": "Section Break" },
+    { "fieldname": "total_collected", "label": "Total Collected", "fieldtype": "Currency", "read_only": 1, "in_list_view": 1 },
+    { "fieldname": "column_break_3", "fieldtype": "Column Break" },
+    { "fieldname": "opening_balance", "label": "Opening Cash Balance", "fieldtype": "Currency" },
+    { "fieldname": "actual_cash_balance", "label": "Actual Cash Balance (Counted)", "fieldtype": "Currency" },
+    { "fieldname": "variance", "label": "Variance", "fieldtype": "Currency", "read_only": 1, "in_list_view": 1 },
+    { "fieldname": "section_break_3", "fieldtype": "Section Break" },
+    { "fieldname": "notes", "label": "Notes", "fieldtype": "Small Text" }
+  ],
+  "permissions": [
+    { "role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1, "report": 1, "export": 1 }
+  ]
+}

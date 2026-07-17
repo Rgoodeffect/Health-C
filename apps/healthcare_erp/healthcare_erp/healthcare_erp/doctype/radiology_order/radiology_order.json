@@ -1,0 +1,32 @@
+{
+  "doctype": "DocType",
+  "name": "Radiology Order",
+  "module": "Healthcare ERP",
+  "custom": 0,
+  "naming_rule": "Expression (old style)",
+  "autoname": "naming_series:",
+  "sort_field": "creation",
+  "sort_order": "DESC",
+  "track_changes": 1,
+  "engine": "InnoDB",
+  "fields": [
+    { "fieldname": "naming_series", "label": "Series", "fieldtype": "Select", "options": "RAD-.YYYY.-.#####", "default": "RAD-.YYYY.-.#####", "reqd": 1 },
+    { "fieldname": "patient", "label": "Patient", "fieldtype": "Link", "options": "Patient", "reqd": 1, "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "patient_name", "label": "Patient Name", "fieldtype": "Data", "fetch_from": "patient.patient_name", "read_only": 1, "in_list_view": 1 },
+    { "fieldname": "practitioner", "label": "Ordering Practitioner", "fieldtype": "Link", "options": "Healthcare Practitioner" },
+    { "fieldname": "column_break_1", "fieldtype": "Column Break" },
+    { "fieldname": "modality", "label": "Modality", "fieldtype": "Link", "options": "Modality", "reqd": 1, "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "body_part", "label": "Body Part / Region", "fieldtype": "Data", "in_list_view": 1 },
+    { "fieldname": "priority", "label": "Priority", "fieldtype": "Select", "options": "Routine\nUrgent\nSTAT", "default": "Routine", "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "section_break_1", "fieldtype": "Section Break" },
+    { "fieldname": "order_date", "label": "Order Date", "fieldtype": "Date", "default": "Today" },
+    { "fieldname": "scheduled_datetime", "label": "Scheduled Date/Time", "fieldtype": "Datetime" },
+    { "fieldname": "column_break_2", "fieldtype": "Column Break" },
+    { "fieldname": "status", "label": "Status", "fieldtype": "Select", "options": "Ordered\nScheduled\nIn Progress\nCompleted\nCancelled", "default": "Ordered", "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "critical_finding", "label": "Critical Finding", "fieldtype": "Check", "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "clinical_indication", "label": "Clinical Indication", "fieldtype": "Small Text" }
+  ],
+  "permissions": [
+    { "role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1, "report": 1, "export": 1 }
+  ]
+}

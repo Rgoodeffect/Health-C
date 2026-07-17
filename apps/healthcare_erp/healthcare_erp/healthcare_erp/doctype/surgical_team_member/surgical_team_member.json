@@ -1,0 +1,14 @@
+{
+  "doctype": "DocType",
+  "name": "Surgical Team Member",
+  "module": "Healthcare ERP",
+  "custom": 0,
+  "istable": 1,
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "fields": [
+    { "fieldname": "practitioner", "label": "Practitioner", "fieldtype": "Link", "options": "Healthcare Practitioner", "reqd": 1, "in_list_view": 1 },
+    { "fieldname": "role", "label": "Role", "fieldtype": "Select", "options": "Surgeon\nAssistant Surgeon\nAnesthesiologist\nScrub Nurse\nCirculating Nurse", "reqd": 1, "in_list_view": 1 }
+  ],
+  "permissions": []
+}

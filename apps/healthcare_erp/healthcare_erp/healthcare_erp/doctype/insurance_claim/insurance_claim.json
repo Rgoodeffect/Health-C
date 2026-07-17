@@ -1,0 +1,33 @@
+{
+  "doctype": "DocType",
+  "name": "Insurance Claim",
+  "module": "Healthcare ERP",
+  "custom": 0,
+  "naming_rule": "Expression (old style)",
+  "autoname": "naming_series:",
+  "sort_field": "creation",
+  "sort_order": "DESC",
+  "track_changes": 1,
+  "engine": "InnoDB",
+  "fields": [
+    { "fieldname": "naming_series", "label": "Series", "fieldtype": "Select", "options": "CLM-.YYYY.-.#####", "default": "CLM-.YYYY.-.#####", "reqd": 1 },
+    { "fieldname": "patient", "label": "Patient", "fieldtype": "Link", "options": "Patient", "reqd": 1, "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "insurance_company", "label": "Insurance Company", "fieldtype": "Link", "options": "Healthcare Insurance Company", "reqd": 1, "in_list_view": 1 },
+    { "fieldname": "coverage_plan", "label": "Coverage Plan", "fieldtype": "Link", "options": "Healthcare Insurance Coverage Plan" },
+    { "fieldname": "column_break_1", "fieldtype": "Column Break" },
+    { "fieldname": "invoice", "label": "Sales Invoice", "fieldtype": "Link", "options": "Sales Invoice" },
+    { "fieldname": "pre_authorization", "label": "Pre Authorization", "fieldtype": "Link", "options": "Insurance Pre Authorization" },
+    { "fieldname": "coverage_type", "label": "Coverage Type", "fieldtype": "Select", "options": "Full Coverage\nCo-Payment\nDeductible", "default": "Full Coverage", "in_list_view": 1 },
+    { "fieldname": "section_break_1", "fieldtype": "Section Break" },
+    { "fieldname": "claim_amount", "label": "Claim Amount", "fieldtype": "Currency", "reqd": 1, "in_list_view": 1 },
+    { "fieldname": "approved_amount", "label": "Approved Amount", "fieldtype": "Currency", "in_list_view": 1 },
+    { "fieldname": "column_break_2", "fieldtype": "Column Break" },
+    { "fieldname": "submitted_on", "label": "Submitted On", "fieldtype": "Date" },
+    { "fieldname": "status", "label": "Status", "fieldtype": "Select", "options": "Draft\nSubmitted\nUnder Review\nApproved\nRejected\nSettled", "default": "Draft", "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "section_break_2", "fieldtype": "Section Break" },
+    { "fieldname": "notes", "label": "Notes", "fieldtype": "Small Text" }
+  ],
+  "permissions": [
+    { "role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1, "report": 1, "export": 1 }
+  ]
+}

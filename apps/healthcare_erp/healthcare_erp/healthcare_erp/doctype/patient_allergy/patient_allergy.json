@@ -1,0 +1,15 @@
+{
+  "doctype": "DocType",
+  "name": "Patient Allergy",
+  "module": "Healthcare ERP",
+  "custom": 0,
+  "istable": 1,
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "fields": [
+    { "fieldname": "allergen", "label": "Allergen", "fieldtype": "Data", "reqd": 1, "in_list_view": 1 },
+    { "fieldname": "reaction", "label": "Reaction", "fieldtype": "Data", "in_list_view": 1 },
+    { "fieldname": "severity", "label": "Severity", "fieldtype": "Select", "options": "Mild\nModerate\nSevere", "default": "Moderate", "in_list_view": 1 }
+  ],
+  "permissions": []
+}

@@ -1,0 +1,15 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+recursive-include healthcare_erp *.css
+recursive-include healthcare_erp *.csv
+recursive-include healthcare_erp *.html
+recursive-include healthcare_erp *.js
+recursive-include healthcare_erp *.json
+recursive-include healthcare_erp *.md
+recursive-include healthcare_erp *.png
+recursive-include healthcare_erp *.py
+recursive-include healthcare_erp *.svg
+recursive-include healthcare_erp *.txt
+recursive-exclude healthcare_erp *.pyc

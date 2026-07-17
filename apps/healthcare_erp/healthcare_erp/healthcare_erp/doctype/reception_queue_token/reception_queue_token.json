@@ -1,0 +1,32 @@
+{
+  "doctype": "DocType",
+  "name": "Reception Queue Token",
+  "module": "Healthcare ERP",
+  "custom": 0,
+  "naming_rule": "By \"Naming Series\" field",
+  "autoname": "naming_series:",
+  "sort_field": "creation",
+  "sort_order": "ASC",
+  "track_changes": 1,
+  "engine": "InnoDB",
+  "fields": [
+    { "fieldname": "naming_series", "label": "Series", "fieldtype": "Select", "options": "TKN-.YYYY.-.MM.-.DD.-.###", "default": "TKN-.YYYY.-.MM.-.DD.-.###", "reqd": 1 },
+    { "fieldname": "patient", "label": "Patient", "fieldtype": "Link", "options": "Patient", "reqd": 1, "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "patient_name", "label": "Patient Name", "fieldtype": "Data", "fetch_from": "patient.patient_name", "read_only": 1, "in_list_view": 1 },
+    { "fieldname": "column_break_1", "fieldtype": "Column Break" },
+    { "fieldname": "appointment", "label": "Appointment", "fieldtype": "Link", "options": "Patient Appointment" },
+    { "fieldname": "practitioner", "label": "Practitioner", "fieldtype": "Link", "options": "Healthcare Practitioner", "in_standard_filter": 1 },
+    { "fieldname": "department", "label": "Department", "fieldtype": "Link", "options": "Medical Department", "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "section_break_1", "fieldtype": "Section Break" },
+    { "fieldname": "status", "label": "Status", "fieldtype": "Select", "options": "Waiting\nCalled\nIn Consultation\nCompleted\nNo Show", "default": "Waiting", "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "priority", "label": "Priority", "fieldtype": "Select", "options": "Normal\nUrgent\nEmergency", "default": "Normal", "in_list_view": 1 },
+    { "fieldname": "column_break_2", "fieldtype": "Column Break" },
+    { "fieldname": "payment_status", "label": "Payment Status", "fieldtype": "Select", "options": "Pending\nVerified\nWaived", "default": "Pending", "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "checked_in_at", "label": "Checked In At", "fieldtype": "Datetime", "default": "now", "read_only": 1 },
+    { "fieldname": "called_at", "label": "Called At", "fieldtype": "Datetime", "read_only": 1 },
+    { "fieldname": "completed_at", "label": "Completed At", "fieldtype": "Datetime", "read_only": 1 }
+  ],
+  "permissions": [
+    { "role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1, "report": 1, "export": 1 }
+  ]
+}

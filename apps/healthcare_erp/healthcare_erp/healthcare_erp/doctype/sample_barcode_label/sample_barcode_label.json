@@ -1,0 +1,24 @@
+{
+  "doctype": "DocType",
+  "name": "Sample Barcode Label",
+  "module": "Healthcare ERP",
+  "custom": 0,
+  "naming_rule": "By fieldname",
+  "autoname": "field:barcode",
+  "sort_field": "creation",
+  "sort_order": "DESC",
+  "engine": "InnoDB",
+  "fields": [
+    { "fieldname": "barcode", "label": "Barcode", "fieldtype": "Data", "reqd": 1, "unique": 1, "in_list_view": 1 },
+    { "fieldname": "lab_test", "label": "Lab Test", "fieldtype": "Link", "options": "Lab Test", "reqd": 1, "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "patient", "label": "Patient", "fieldtype": "Link", "options": "Patient", "fetch_from": "lab_test.patient", "read_only": 1, "in_list_view": 1 },
+    { "fieldname": "column_break_1", "fieldtype": "Column Break" },
+    { "fieldname": "sample_collection", "label": "Sample Collection", "fieldtype": "Link", "options": "Sample Collection" },
+    { "fieldname": "barcode_image", "label": "Barcode Image", "fieldtype": "Attach Image", "read_only": 1 },
+    { "fieldname": "printed", "label": "Printed", "fieldtype": "Check", "in_list_view": 1 },
+    { "fieldname": "printed_on", "label": "Printed On", "fieldtype": "Datetime", "read_only": 1 }
+  ],
+  "permissions": [
+    { "role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1, "report": 1, "export": 1 }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "doctype": "DocType",
+  "name": "Pre Op Checklist",
+  "module": "Healthcare ERP",
+  "custom": 0,
+  "naming_rule": "Random",
+  "autoname": "hash",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1,
+  "engine": "InnoDB",
+  "fields": [
+    { "fieldname": "surgery_request", "label": "Surgery Request", "fieldtype": "Link", "options": "Surgery Request", "reqd": 1, "unique": 1, "in_list_view": 1 },
+    { "fieldname": "column_break_1", "fieldtype": "Column Break" },
+    { "fieldname": "completed_by", "label": "Completed By", "fieldtype": "Link", "options": "User", "read_only": 1 },
+    { "fieldname": "completed_on", "label": "Completed On", "fieldtype": "Datetime", "read_only": 1 },
+    { "fieldname": "section_break_1", "fieldtype": "Section Break", "label": "Checklist" },
+    { "fieldname": "consent_obtained", "label": "Consent Obtained", "fieldtype": "Check", "in_list_view": 1 },
+    { "fieldname": "site_marked", "label": "Surgical Site Marked", "fieldtype": "Check" },
+    { "fieldname": "npo_confirmed", "label": "NPO Status Confirmed", "fieldtype": "Check" },
+    { "fieldname": "column_break_2", "fieldtype": "Column Break" },
+    { "fieldname": "allergies_reviewed", "label": "Allergies Reviewed", "fieldtype": "Check" },
+    { "fieldname": "labs_reviewed", "label": "Labs/Imaging Reviewed", "fieldtype": "Check" },
+    { "fieldname": "equipment_ready", "label": "Equipment/Implants Ready", "fieldtype": "Check" },
+    { "fieldname": "section_break_2", "fieldtype": "Section Break" },
+    { "fieldname": "notes", "label": "Notes", "fieldtype": "Small Text" }
+  ],
+  "permissions": [
+    { "role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1, "report": 1, "export": 1 }
+  ]
+}

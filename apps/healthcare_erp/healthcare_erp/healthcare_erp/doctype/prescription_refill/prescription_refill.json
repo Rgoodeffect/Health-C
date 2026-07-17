@@ -1,0 +1,32 @@
+{
+  "doctype": "DocType",
+  "name": "Prescription Refill",
+  "module": "Healthcare ERP",
+  "custom": 0,
+  "naming_rule": "Random",
+  "autoname": "hash",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1,
+  "engine": "InnoDB",
+  "fields": [
+    { "fieldname": "patient", "label": "Patient", "fieldtype": "Link", "options": "Patient", "reqd": 1, "in_list_view": 1, "in_standard_filter": 1 },
+    { "fieldname": "patient_name", "label": "Patient Name", "fieldtype": "Data", "fetch_from": "patient.patient_name", "read_only": 1, "in_list_view": 1 },
+    { "fieldname": "drug", "label": "Drug", "fieldtype": "Link", "options": "Item", "reqd": 1, "in_list_view": 1 },
+    { "fieldname": "drug_name", "label": "Drug Name", "fieldtype": "Data", "fetch_from": "drug.item_name", "read_only": 1, "in_list_view": 1 },
+    { "fieldname": "column_break_1", "fieldtype": "Column Break" },
+    { "fieldname": "original_encounter", "label": "Original Encounter", "fieldtype": "Link", "options": "Patient Encounter" },
+    { "fieldname": "dosage", "label": "Dosage", "fieldtype": "Data" },
+    { "fieldname": "frequency", "label": "Frequency", "fieldtype": "Data" },
+    { "fieldname": "section_break_1", "fieldtype": "Section Break" },
+    { "fieldname": "refills_allowed", "label": "Refills Allowed", "fieldtype": "Int", "default": "0", "in_list_view": 1 },
+    { "fieldname": "refills_used", "label": "Refills Used", "fieldtype": "Int", "default": "0", "read_only": 1, "in_list_view": 1 },
+    { "fieldname": "column_break_2", "fieldtype": "Column Break" },
+    { "fieldname": "last_refill_date", "label": "Last Refill Date", "fieldtype": "Date", "read_only": 1 },
+    { "fieldname": "next_refill_due", "label": "Next Refill Due", "fieldtype": "Date" },
+    { "fieldname": "status", "label": "Status", "fieldtype": "Select", "options": "Active\nCompleted\nCancelled", "default": "Active", "in_list_view": 1, "in_standard_filter": 1 }
+  ],
+  "permissions": [
+    { "role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1, "report": 1, "export": 1 }
+  ]
+}
