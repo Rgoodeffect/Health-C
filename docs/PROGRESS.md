@@ -12,7 +12,7 @@ Legend: ✅ done · 🚧 in progress · ⬜ queued
 | 5 | Prescription Management | ✅ | ✅ | ⬜ |
 | 6 | Laboratory (LIS) | ✅ | ✅ | ⬜ |
 | 7 | Radiology (RIS) | ✅ | ✅ | ⬜ |
-| 8 | Admission & Bed Management | ⬜ | ⬜ | ⬜ |
+| 8 | Admission & Bed Management | ✅ | ✅ | ⬜ |
 | 9 | Surgery & Operating Theatre | ⬜ | ⬜ | ⬜ |
 | 10 | Pharmacy | ⬜ | ⬜ | ⬜ |
 | 11 | Billing & Cashier | ⬜ | ⬜ | ⬜ |
@@ -112,6 +112,15 @@ Each row is committed to `claude/healthcare-management-system-xxor9g` as it comp
 - Frontend: order/schedule/report workflow with priority + critical-finding badges, and
   modality management.
 
-**Not yet built:** demo/seed data for modules 0–3/5–7, and modules 8–14's own doctypes/screens (the
+**Module 8 — Admission & Bed Management**
+- `Bed Transfer Request`, `Nursing Note` doctypes alongside core `Inpatient Record` /
+  `Healthcare Service Unit`.
+- `healthcare_erp/api/admissions.py`: bed board occupancy summary, admission requests, bed
+  assignment, transfer request/completion, discharge, nursing notes — all defensively
+  read/written via `set_if_field_exists()`.
+- Frontend: bed board with occupancy bars per ward, admission -> assign bed -> transfer ->
+  discharge workflow, nursing notes screen.
+
+**Not yet built:** demo/seed data for modules 0–3/5–8, and modules 9–14's own doctypes/screens (the
 Patient 360 tabs already render live data from core ERPNext doctypes as those modules land —
 no frontend rework needed later, just backend doctypes + richer detail screens).
