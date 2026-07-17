@@ -10,7 +10,7 @@ Legend: ✅ done · 🚧 in progress · ⬜ queued
 | 3 | Reception | ✅ | ✅ | ⬜ |
 | 4 | Consultation & EMR | ✅ | ✅ | ✅ |
 | 5 | Prescription Management | ✅ | ✅ | ⬜ |
-| 6 | Laboratory (LIS) | ⬜ | ⬜ | ⬜ |
+| 6 | Laboratory (LIS) | ✅ | ✅ | ⬜ |
 | 7 | Radiology (RIS) | ⬜ | ⬜ | ⬜ |
 | 8 | Admission & Bed Management | ⬜ | ⬜ | ⬜ |
 | 9 | Surgery & Operating Theatre | ⬜ | ⬜ | ⬜ |
@@ -93,6 +93,16 @@ Each row is committed to `claude/healthcare-management-system-xxor9g` as it comp
 - Frontend: prescribing workflow with live allergy/interaction warnings, refill tracking
   table, and a print action rendering a clean prescription via `window.print()`.
 
-**Not yet built:** demo/seed data for modules 0–3/5, and modules 6–14's own doctypes/screens (the
+**Module 6 — Laboratory Information System**
+- `Sample Barcode Label`, `Lab QC Run`, `Analyzer Result Inbox` doctypes; Custom Fields add a
+  result summary + critical-result flag to core `Lab Test`.
+- `healthcare_erp/api/laboratory.py`: order creation, sample collection with Code128 barcode
+  generation, result entry (auto Clinical Alert + realtime push on critical results),
+  verification, QC run recording, and an analyzer-integration inbox that queues incoming
+  results for technician review instead of writing directly to a patient record.
+- Frontend: order/collect/result/verify workflow, barcode label dialog with print, unverified
+  critical-results view, QC run log.
+
+**Not yet built:** demo/seed data for modules 0–3/5–6, and modules 7–14's own doctypes/screens (the
 Patient 360 tabs already render live data from core ERPNext doctypes as those modules land —
 no frontend rework needed later, just backend doctypes + richer detail screens).
