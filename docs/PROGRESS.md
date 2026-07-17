@@ -9,7 +9,7 @@ Legend: ✅ done · 🚧 in progress · ⬜ queued
 | 2 | Appointments | ✅ | ✅ | ⬜ |
 | 3 | Reception | ✅ | ✅ | ⬜ |
 | 4 | Consultation & EMR | ✅ | ✅ | ✅ |
-| 5 | Prescription Management | ⬜ | ⬜ | ⬜ |
+| 5 | Prescription Management | ✅ | ✅ | ⬜ |
 | 6 | Laboratory (LIS) | ⬜ | ⬜ | ⬜ |
 | 7 | Radiology (RIS) | ⬜ | ⬜ | ⬜ |
 | 8 | Admission & Bed Management | ⬜ | ⬜ | ⬜ |
@@ -84,6 +84,15 @@ Each row is committed to `claude/healthcare-management-system-xxor9g` as it comp
   real voice dictation (Web Speech API, graceful fallback), past consultations with sign-off,
   clinical alerts panel, medical timeline.
 
-**Not yet built:** demo/seed data for modules 0–3, and modules 5–14's own doctypes/screens (the
+**Module 5 — Prescription Management**
+- `Patient Allergy` child doctype wired onto `Patient` (and fixed the Module-1 bug where
+  allergies were queried as a scalar field), `Drug Interaction Rule`, `Prescription Refill`.
+- `healthcare_erp/api/prescriptions.py`: drug search over core `Item`, allergy-conflict and
+  drug-interaction checks, prescribing (appends to the encounter's Drug Prescription rows +
+  creates a refill tracker), refill requests, and a printable-prescription data endpoint.
+- Frontend: prescribing workflow with live allergy/interaction warnings, refill tracking
+  table, and a print action rendering a clean prescription via `window.print()`.
+
+**Not yet built:** demo/seed data for modules 0–3/5, and modules 6–14's own doctypes/screens (the
 Patient 360 tabs already render live data from core ERPNext doctypes as those modules land —
 no frontend rework needed later, just backend doctypes + richer detail screens).
