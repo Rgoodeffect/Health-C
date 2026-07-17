@@ -79,6 +79,27 @@ async function request<T, M = Record<string, unknown>>(
   return (payload.message ?? payload) as Envelope<T, M>;
 }
 
+async function uploadFile(file: File, attachTo: { doctype: string; docname: string }): Promise<{ file_url: string; file_name: string }> {
+  const csrfToken = getCookie("csrf_token");
+  const form = new FormData();
+  form.append("file", file);
+  form.append("doctype", attachTo.doctype);
+  form.append("docname", attachTo.docname);
+  form.append("is_private", "0");
+
+  const res = await fetch("/backend-api/method/upload_file", {
+    method: "POST",
+    credentials: "include",
+    headers: csrfToken ? { "X-Frappe-CSRF-Token": csrfToken } : undefined,
+    body: form,
+  });
+  const payload = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    throw new FrappeApiError(payload?.exception || res.statusText, res.status);
+  }
+  return payload.message;
+}
+
 export const frappe = {
   get: <T, M = Record<string, unknown>>(method: string, query?: Record<string, unknown>) =>
     request<T, M>(method, { query, httpMethod: "GET" }),
@@ -86,6 +107,7 @@ export const frappe = {
     request<T, M>(method, { body, httpMethod: "POST" }),
   put: <T, M = Record<string, unknown>>(method: string, body?: Record<string, unknown>) =>
     request<T, M>(method, { body, httpMethod: "PUT" }),
+  uploadFile,
 };
 
 export interface PaginatedMeta {

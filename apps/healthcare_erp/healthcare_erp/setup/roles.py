@@ -148,6 +148,21 @@ ROLE_PERMISSION_MATRIX: dict[str, dict[str, dict]] = {
 		"Insurance Claim Rejection": CRUD,
 		"Insurance Settlement": READ_CREATE,
 	},
+	"Patient": {
+		# Record-level scoping to "my own record only" comes from the
+		# User Permission created in doc_events/patient.py, not from these
+		# role grants — these just set the doctype-level ceiling.
+		"Patient": {"read": 1, "write": 1},
+		"Patient Appointment": READ_CREATE,
+		"Patient Encounter": READ,
+		"Drug Prescription": READ,
+		"Prescription Refill": READ,
+		"Lab Test": READ,
+		"Radiology Order": READ,
+		"Radiology Report": READ,
+		"Sales Invoice": READ,
+		"Insurance Claim": READ,
+	},
 }
 
 
